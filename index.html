@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ketching balls</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Ketching balls</h1>
+    <p class="missedBall">Balls missed: <span id="missed"></span></p>
+    <p class="catchedBall">Balls ketched: <span id="catched"></span></p>
+ <div id="greetings">
+    <h3>Hi there, please choose your level:</h3>
+    <button id="beginner" value="Level 1">Beginner</button>
+    <button id="medium" value="Level 2">Medium</button>
+    <button id="high" value="Level 3">High</button>
+    <button id="rules" value="rules">Rules</button>
+    </div>
+    
+ <div id="rulesText">
+   <p>Try to catch as many balls as posible and make your own record.</p>
+   <p>If you'll miss 70 balls on the beginner level, 50 on the medium level
+     or 40 on high level you will loose the game</p>
+   <button class="back" value="back">Back >></button>
+ </div>
+ 
+ <div id="gameOver">
+   <h2>Game Over</h2>
+   <p>Your score is: <span id="score"></span></p>
+   <button class="playAgain" value="Play again">Play again!</button>
+   </div>  
+    
+    <canvas></canvas>
+    <script src="main.js"></script>
+  </body>
+</html>

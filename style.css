@@ -1,0 +1,74 @@
+html, body {
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+body {
+  overflow: hidden;
+  height: inherit;
+  background-color: #021e47;
+}
+h1 {
+  font-size: 2rem;
+  letter-spacing: -1px;
+  position: absolute;
+  margin: 0;
+  top: -4px;
+  right: 5px;
+  color: transparent;
+  text-shadow: 0 0 4px white;
+}
+.missedBall {
+  position: absolute;
+  margin: 0;
+  top: 35px;
+  right: 5px;
+  color: #aaa;
+}
+.catchedBall {
+  position: absolute;
+  margin: 0;
+  top: 55px;
+  right: 5px;
+  color: #aaa;
+}
+#greetings, #rulesText, #gameOver {
+ position: absolute;
+ top: 31%;
+ left: 31%;
+ background: linear-gradient(to bottom right, #4286f4, #021e47);
+ box-shadow: 4px 4px 2px #00040a;
+ display: none;
+ z-index: 1;
+ text-align: center;
+ padding: 5%;
+ color: #fff;
+ font-family: 'Comfortaa', sans-serif;
+ text-transform: uppercase;
+ font-weight: 600;
+ border-radius: 10px;
+ max-width: 30%;
+}
+
+#rulesText p {
+  text-transform: none;
+  font-weight: 400;
+}
+
+#rules, .back, .playAgain {
+  display: block;
+  margin: 15px auto 0 auto;
+  background-color: #021e47;
+  color: #fff;
+  border-color: #021e47;
+  padding: 5px 15px;
+}
+
+canvas {
+  border: 3px solid white;
+  margin: 30px;
+  /*min-width: 600px;*/
+}
