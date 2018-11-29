@@ -12,8 +12,8 @@ var backBtn = document.querySelector('.back');
 var ballNum;
 var catchedNum = 0;
 var missedNum = 0;
-var width = canvas.width = window.innerWidth/2;
-var height = canvas.height = window.innerHeight*0.94;
+var width = canvas.width = window.innerWidth / 2;
+var height = canvas.height = window.innerHeight * 0.94;
 var ballSizeOne;
 var ballSizeTwo;
 var cameOverCount;
@@ -22,16 +22,16 @@ var score = document.querySelector('#score');
 var playAgain = document.querySelector('.playAgain');
 
 //function to generate random number
-function random(min,max) {
- var num = Math.floor(Math.random()*(max-min)) + min;
- return num;
+function random(min, max) {
+  var num = Math.floor(Math.random() * (max - min)) + min;
+  return num;
 }
 
 //------------------------------------------------------------------------
 
 window.onload = function () {
- greetings.style.display = 'block';
-} 
+  greetings.style.display = 'block';
+}
 
 rules.onclick = function () {
   greetings.style.display = 'none';
@@ -43,35 +43,35 @@ backBtn.onclick = function () {
   greetings.style.display = 'block';
 }
 
-lev1.onclick = function() {
- ballNum = 5;
- greetings.style.display = 'none';
- ballSizeOne = 20;
- ballSizeTwo = 30;
- cameOverCount = 70;
- loop();
+lev1.onclick = function () {
+  ballNum = 5;
+  greetings.style.display = 'none';
+  ballSizeOne = 20;
+  ballSizeTwo = 30;
+  cameOverCount = 70;
+  loop();
 }
 
-lev2.onclick = function() {
- ballNum = 6;
- greetings.style.display = 'none';
- ballSizeOne = 15;
- ballSizeTwo = 25;
- cameOverCount = 50;
- loop();
+lev2.onclick = function () {
+  ballNum = 6;
+  greetings.style.display = 'none';
+  ballSizeOne = 15;
+  ballSizeTwo = 25;
+  cameOverCount = 50;
+  loop();
 }
 
-lev3.onclick = function() {
- ballNum = 10;
- greetings.style.display = 'none';
- ballSizeOne = 10;
- ballSizeTwo = 20;
- cameOverCount = 40;
- loop();
+lev3.onclick = function () {
+  ballNum = 10;
+  greetings.style.display = 'none';
+  ballSizeOne = 10;
+  ballSizeTwo = 20;
+  cameOverCount = 40;
+  loop();
 }
 
 playAgain.onclick = function () {
-  cameOver.style.display ='none';
+  cameOver.style.display = 'none';
   window.location.reload(true);
 }
 
@@ -85,25 +85,25 @@ function Shape(x, y, velX, velY, notCrossing) {
   this.notCrossing = notCrossing;
 }
 
-function Ball (x, y, velX, velY, notCrossing, color, size) {
- Shape.call(this, x, y, velX, velY, notCrossing);
- 
- this.color = color;
- this.size = size;
+function Ball(x, y, velX, velY, notCrossing, color, size) {
+  Shape.call(this, x, y, velX, velY, notCrossing);
+
+  this.color = color;
+  this.size = size;
 }
 
 
 Ball.prototype = Object.create(Shape.prototype);
 Ball.prototype.constructor = Ball;
 
-Ball.prototype.draw = function() {
+Ball.prototype.draw = function () {
   ctx.beginPath();
   ctx.fillStyle = this.color;
   ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
   ctx.fill();
 }
 
-Ball.prototype.update = function() {
+Ball.prototype.update = function () {
   if ((this.x + this.size) >= width) {
     if (((this.x + this.size) - this.velX) >= width) {
       this.x -= 20;
@@ -130,7 +130,7 @@ Ball.prototype.update = function() {
   this.y += this.velY;
 }
 
-Ball.prototype.collisionDetect = function() {
+Ball.prototype.collisionDetect = function () {
   for (var j = 0; j < balls.length; j++) {
     if (!(this === balls[j])) {
       var dx = this.x - balls[j].x;
@@ -138,55 +138,55 @@ Ball.prototype.collisionDetect = function() {
       var distance = Math.sqrt(dx * dx + dy * dy);
       if (distance <= this.size + balls[j].size && this.notCrossing === true && balls[j].notCrossing === true) {
         if ((this.velX > 0 && balls[j].velX < 0) || (this.velX < 0 && balls[j].velX > 0)) {
-			this.velX = -(this.velX);
-			balls[j].velX = -(balls[j].velX);
-			
-		}
-        
-		if ((this.velY > 0 && balls[j].velY < 0) || (this.velY < 0 && balls[j].velY > 0)) {
-			this.velY = -(this.velY);
-			balls[j].velY = -(balls[j].velY);
-		}
-		
-		this.notCrossing = false;
-		balls[j].notCrossing = false;
-		balls[j].color  
-           = 'rgb(' + random(0, 255) + ',' 
-                    + random(0, 255) + ',' 
-                    + random(0, 255) +')';
-        this.color 
-           = 'rgb(' + random(0, 255) + ',' 
-                    + random(0, 255) + ',' 
-                    + random(0, 255) +')';
+          this.velX = -(this.velX);
+          balls[j].velX = -(balls[j].velX);
+
+        }
+
+        if ((this.velY > 0 && balls[j].velY < 0) || (this.velY < 0 && balls[j].velY > 0)) {
+          this.velY = -(this.velY);
+          balls[j].velY = -(balls[j].velY);
+        }
+
+        this.notCrossing = false;
+        balls[j].notCrossing = false;
+        balls[j].color
+          = 'rgb(' + random(0, 255) + ','
+          + random(0, 255) + ','
+          + random(0, 255) + ')';
+        this.color
+          = 'rgb(' + random(0, 255) + ','
+          + random(0, 255) + ','
+          + random(0, 255) + ')';
       }
-	  
-	  if (distance > this.size + balls[j].size && this.notCrossing === false && balls[j].notCrossing === false) {
-		this.notCrossing = true;
-		balls[j].notCrossing = true;
-	  }
+
+      if (distance > this.size + balls[j].size && this.notCrossing === false && balls[j].notCrossing === false) {
+        this.notCrossing = true;
+        balls[j].notCrossing = true;
+      }
     }
   }
-} 
+}
 
 var balls = [];
 
 //-----------------------------------------------------------------------------
 
-function Desk (a,b, leng, thik, color, move) {
- this.a = a;
- this.b = b;
- this.leng = leng;
- this.thik = thik;
- this.color = color;
- this.move = move;
+function Desk(a, b, leng, thik, color, move) {
+  this.a = a;
+  this.b = b;
+  this.leng = leng;
+  this.thik = thik;
+  this.color = color;
+  this.move = move;
 }
 
 Desk.prototype.draw = function () {
- ctx.fillStyle = this.color;
-    ctx.fillRect(this.a, this.b, this.leng, this.thik);
+  ctx.fillStyle = this.color;
+  ctx.fillRect(this.a, this.b, this.leng, this.thik);
 }
 
-Desk.prototype.checkBounds = function() {
+Desk.prototype.checkBounds = function () {
   if ((this.a + this.leng) >= width) {
     this.a = width - this.leng;
   }
@@ -195,15 +195,15 @@ Desk.prototype.checkBounds = function() {
   }
 }
 
-Desk.prototype.setControls = function() {
-var _this = this;
-window.onkeydown = function(e) {
+Desk.prototype.setControls = function () {
+  var _this = this;
+  window.onkeydown = function (e) {
     if (e.keyCode === 37) {
       _this.a -= _this.move;
     } else if (e.keyCode === 39) {
       _this.a += _this.move;
+    }
   }
-}
 }
 
 Desk.prototype.collisionDet = function () {
@@ -212,14 +212,14 @@ Desk.prototype.collisionDet = function () {
       if (((balls[j].y + balls[j].size) - balls[j].velY) >= this.b) {
         balls[j].y -= 100;
       }
-      
+
       balls[j].velY = -(balls[j].velY);
       catchedNum++;
     }
   }
 }
 
-var BottomDesk = new Desk(((width/2)-150), (height-15), 300, 20, 'white', 60);
+var BottomDesk = new Desk(((width / 2) - 150), (height - 15), 300, 20, 'white', 60);
 
 //-----------------------------------------------------------------------------
 
@@ -234,12 +234,12 @@ function loop() {
 
   while (balls.length < ballNum) {
     var ball = new Ball(
-      random(0,width),
-      random(0,height),
-      random(1,7),
-      random(1,7),
-   true,
-      'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
+      random(0, width),
+      random(0, height),
+      random(1, 7),
+      random(1, 7),
+      true,
+      'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) + ')',
       random(ballSizeOne, ballSizeTwo)
     );
     balls.push(ball);
@@ -247,13 +247,13 @@ function loop() {
   for (var i = 0; i < balls.length; i++) {
     balls[i].draw();
     balls[i].update();
- balls[i].collisionDetect();
+    balls[i].collisionDetect();
   }
-  
+
   missed.innerHTML = missedNum;
   catched.innerHTML = catchedNum;
-  
-  
+
+
   if (missedNum === cameOverCount) {
     cancelAnimationFrame(loop);
     gameOver.style.display = 'block';
