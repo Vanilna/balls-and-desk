@@ -3,3 +3,5 @@
 Simple game (learning to code)
 
 I've made it near 3 months ago, but now I wont to share it.
+
+Demo - https://vanilna.github.io/balls-and-desk/
