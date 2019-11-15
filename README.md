@@ -2,6 +2,6 @@
 
 Simple game (learning to code)
 
-I've made it near 3 months ago, but now I wont to share it.
+Inspired by an exersice from course on CodeCademy.
 
 Demo - https://vanilna.github.io/balls-and-desk/
